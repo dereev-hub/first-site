@@ -13,3 +13,6 @@ class UserRepository:
         )
         self.db.add(user)
         self.db.commit()
+
+    def get_by_email(self, email:str) -> User | None:
+        return self.db.query(User).filter(User.email == email).first()
