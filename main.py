@@ -1,16 +1,26 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session
 from repositories import *
 from controllers import *
 from routers import *
 from services import *
 from models import *
+from dotenv import load_dotenv
+import os
 
+
+load_dotenv(override=True)
 app = Flask(__name__)
 app.static_folder = 'static'
+app.secret_key = os.getenv('SECRET')
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    # TODO: переделать главную ,добавить поиск и любимые треки
+    user_email = session.get('user_email','аноним')
+    return render_template('index.html',user_email = user_email)
+
+
+Base.metadata.create_all(bind = engine)
 
 with get_db() as db:
     user_repository = UserRepository(db)
@@ -20,4 +30,5 @@ with get_db() as db:
     app.register_blueprint(user_router.router, url_prefix='/users')
 
 
-    app.run()
+if __name__ == '__main__':
+    app.run(debug=True)
