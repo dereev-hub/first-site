@@ -4,73 +4,82 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
-    background-color: #ff5858; /* Добавил фон для красоты */
+    background: linear-gradient(180deg, #13081f 0%, #1a0d2c 48%, #09050f 100%);
 }
 
 form, form input, form button {
     font-family: 'Roboto', sans-serif !important;
-    font-weight: 400;  /* Обычный */
-    font-optical-sizing: auto;
+    font-weight: 400;
 }
+
 form {
     display: flex;
-    background-color: rgb(167, 74, 74);
+    background: rgba(50, 20, 80, 0.88);
     flex-direction: column;
     width: 500px;
     height: 500px;
     justify-content: center;
     gap: 20px;
     align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 0 10px black;
+    border-radius: 18px;
+    border: 1px solid rgba(194, 143, 255, 0.3);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
 }
 
-/* Стили для полей ввода */
+/* Поля ввода */
 form input {
-    width: 80%;      /* Ширина 80% от формы */
-    height: 50px;    /* Фиксированная высота */
-    padding: 0 15px; /* Отступы внутри */
-    font-size: 16px; /* Удобный размер шрифта */
-    border: 2px solid #ccc; /* Граница */
-    border-radius: 8px;     /* Скругление углов */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Лёгкая тень */
-    transition: all 0.3s ease; /* Плавные эффекты */
-    box-sizing: border-box; /* Чтобы padding не ломал ширину */
+    width: 80%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 2px solid rgba(194, 143, 255, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background: rgba(60, 24, 92, 0.75);
+    color: white;
+}
+
+form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 form input:focus {
-    outline: none;          /* Убираем стандартный outline */
-    border-color: #007bff;  /* Синяя граница при фокусе */
-    box-shadow: 0 0 10px rgba(0,123,255,0.3); /* Свечение */
-    transform: translateY(-2px); /* Лёгкий подъём */
+    outline: none;
+    border-color: #8f4dff;
+    box-shadow: 0 0 20px rgba(143, 77, 255, 0.4);
+    transform: translateY(-2px);
+    background: rgba(60, 24, 92, 0.95);
 }
 
 form input:hover {
-    border-color: #007bff;
+    border-color: #a86bff;
 }
 
-/* Стили для кнопки */
+/* Кнопка */
 form button {
-    width: 80%;        /* Такая же ширина, как у input */
-    height: 50px;      /* Такая же высота */
-    background-color: #007bff; /* Синий фон */
-    color: white;      /* Белый текст */
-    font-size: 18px;   /* Размер шрифта */
-    font-weight: bold;
-    border: none;      /* Без границы */
-    border-radius: 8px; /* Скругление */
-    cursor: pointer;   /* Курсор-рука */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Тень */
+    width: 80%;
+    height: 50px;
+    background: linear-gradient(180deg, #8f4dff, #6f2de0);
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(143, 77, 255, 0.35);
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
 form button:hover {
-    background-color: #0056b3; /* Темнее при наведении */
-    transform: translateY(-3px); /* Подъём */
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    background: linear-gradient(180deg, #a86bff, #8040eb);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(143, 77, 255, 0.45);
 }
 
 form button:active {
-    transform: translateY(-1px); /* Нажатие */
+    transform: translateY(-1px);
 }

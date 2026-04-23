@@ -8,9 +8,9 @@ class UserRouter:
         self.router = Blueprint('user',__name__)
         self.router.add_url_rule("/signup/",
                                  view_func=self.user_controller.signup,
-                                 methods=['GET','POST'],
+                                 methods=['POST'],
                                  endpoint='signup')
-        self.router.add_url_rule("/signin/",
-                                view_func=self.user_controller.signin,
-                                methods=['GET','POST'],
-                                endpoint='signin')
+        # self.router.add_url_rule("/signin/",
+        #                         view_func=self.user_controller.signin,
+        #                         methods=['POST'],
+        #                         endpoint='signin')

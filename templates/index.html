@@ -3,32 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Биографии музыкантов</title>
+    <title>Violet Pulse</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 </head>
 <body>
-    <h2>{{user_email}}</h2>
-    <h1>Биографии</h1>
+    <div class="page">
+        <header class="header">
+            <div class="brand">
+                <img class="logo" src="{{ url_for('static', filename='img/violet-pulse.png') }}" alt="Violet Pulse">
+                <div class="brand-text">
+                    <div class="brand-title">Violet Pulse</div>
+                    <div class="brand-subtitle">music hub</div>
+                </div>
+            </div>
 
-    <section class="bio-section">
-        <h2>Freddie Mercury (Queen)</h2>
-        <p>Фредди Меркьюри (настоящее имя Фаррух Булсара) родился 5 сентября 1946 года на острове Занзибар. 
-        Он стал вокалистом и автором песен группы Queen и прославился мощным голосом и яркими сценическими выступлениями. 
-        Умер 24 ноября 1991 года в Лондоне.</p>
-    </section>
+            <div class="header-actions">
+                <button class="icon-btn">⚙</button>
+            </div>
+        </header>
 
-    <section class="bio-section">
-        <h2>The Weeknd (Абель Тесфайе)</h2>
-        <p>The Weeknd, настоящее имя Абель Макконен Тесфайе, родился 16 февраля 1990 года в Торонто, Канада. 
-        Известность получил после серии микстейпов в 2011 году, а мировой успех принесли альбомы вроде «Beauty Behind the Madness» и «After Hours». 
-        Он является обладателем нескольких музыкальных наград и рекордов в чартах.</p>
-    </section>
+        <main class="content">
+            <div class="search-wrap">
+                <input type="text" placeholder="Поиск музыки, альбомов, исполнителей">
+                <button type="button">🔍</button>
+            </div>
 
-    <section class="bio-section">
-        <h2>Billie Eilish</h2>
-        <p>Билли Айлиш родилась 18 декабря 2001 года в Лос‑Анджелесе. 
-        Прорыв произошёл после выхода песни «Ocean Eyes» в 2015 году, написанной её братом Финнеасом. 
-        Позже она получила множество престижных наград за свои альбомы и синглы.</p>
-    </section>
+            <section class="cards">
+                <a href="#" class="card">
+                    <div class="card-title">Альбомы</div>
+                    <div class="card-text">Открыть коллекцию альбомов</div>
+                </a>
+
+                <a href="#" class="card">
+                    <div class="card-title">Создать альбом</div>
+                    <div class="card-text">Добавить свою подборку</div>
+                </a>
+            </section>
+        </main>
+
+        <footer class="bottom-bar">
+            <div class="bottom-left">
+                <span class="play-icon">▶</span>
+                <div>
+                    <div class="bottom-title">Сейчас играет</div>
+                    <div class="bottom-subtitle">Список треков</div>
+                </div>
+            </div>
+
+            <button class="fav-btn">❤ Избранное</button>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='js/learning.js') }}"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
-from flask import Flask, render_template, session
+from flask import Flask, g, render_template, session
+from requests import Session
+from models.base import SessionLocal
 from repositories import *
 from controllers import *
 from routers import *
@@ -13,21 +15,28 @@ app = Flask(__name__)
 app.static_folder = 'static'
 app.secret_key = os.getenv('SECRET')
 
-@app.route("/")
-def index():
-    # TODO: переделать главную ,добавить поиск и любимые треки
-    user_email = session.get('user_email','аноним')
-    return render_template('index.html',user_email = user_email)
+
+@app.before_request
+def before_request_db():
+    # Создаем сессию для текущего запроса и сохраняем ее в g
+    g.db = SessionLocal()
+
+
+@app.teardown_appcontext
+def teardown_request_db(exception=None):
+    db: Session = g.pop('db', None)
+    if db is not None:
+        db.close()  # Используем .remove() для scoped_session
 
 
 Base.metadata.create_all(bind = engine)
 
-with get_db() as db:
-    user_repository = UserRepository(db)
-    user_service = UserService(user_repository)
-    user_controller = UserController(user_service)
-    user_router = UserRouter(user_controller)
-    app.register_blueprint(user_router.router, url_prefix='/users')
+
+user_repository = UserRepository()
+user_service = UserService(user_repository)
+user_controller = UserController(user_service)
+user_router = UserRouter(user_controller)
+app.register_blueprint(user_router.router, url_prefix='/users')
 
 
 if __name__ == '__main__':
