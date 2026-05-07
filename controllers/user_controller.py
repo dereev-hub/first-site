@@ -1,5 +1,6 @@
 from flask import jsonify, render_template, request, session, redirect
 from services.user_service import UserService
+from utils.auth import authorized
 
 
 class UserController:
@@ -37,5 +38,23 @@ class UserController:
                 self.user_service.signup(**body)
                 return jsonify({'message': 'пользователь успешно зарегистрирован'}),201
             return jsonify({'error': "требуется json"}),403
+        except Exception as e:
+            return jsonify({'error': str(e)}),409
+        
+    def signin(self):
+        try:
+            if request.is_json:
+                body = request.get_json()
+                token = self.user_service.signin(**body)
+                return jsonify({'token': token}),201
+            return jsonify({'error': "требуется json"}),403
+        except Exception as e:
+            return jsonify({'error': str(e)}),409
+
+    @authorized    
+    def get_info(self, user_id: int):
+        try:
+            user = self.user_service.get_info(user_id)
+            return jsonify({'user': user.model_dump()}),200
         except Exception as e:
             return jsonify({'error': str(e)}),409
