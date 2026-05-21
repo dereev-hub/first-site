@@ -42,14 +42,14 @@ class UserController:
             return jsonify({'error': str(e)}),409
         
     def signin(self):
-        try:
+        # try:
             if request.is_json:
                 body = request.get_json()
                 token = self.user_service.signin(**body)
                 return jsonify({'token': token}),201
             return jsonify({'error': "требуется json"}),403
-        except Exception as e:
-            return jsonify({'error': str(e)}),409
+        # except Exception as e:
+        #     return jsonify({'error': str(e)}),409
 
     @authorized    
     def get_info(self, user_id: int):

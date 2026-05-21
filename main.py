@@ -7,18 +7,19 @@ from routers import *
 from services import *
 from models import *
 from dotenv import load_dotenv
+from flask_cors import CORS
 import os
 
 
 load_dotenv(override=True)
 app = Flask(__name__)
+CORS(app)
 app.static_folder = 'static'
 app.secret_key = os.getenv('SECRET')
 
 
 @app.before_request
 def before_request_db():
-    # Создаем сессию для текущего запроса и сохраняем ее в g
     g.db = SessionLocal()
 
 
@@ -26,7 +27,7 @@ def before_request_db():
 def teardown_request_db(exception=None):
     db: Session = g.pop('db', None)
     if db is not None:
-        db.close()  # Используем .remove() для scoped_session
+        db.close()
 
 
 Base.metadata.create_all(bind = engine)
