@@ -26,7 +26,7 @@ class GeniusResponse(BaseModel):
     response: dict | None = None
 
 
-class GeniusResponse(BaseModel):
+class GeniusResponseJson(BaseModel):
     meta: BaseModel
     response: GeniusResponse
 
@@ -38,10 +38,10 @@ def search_by_text(text: str) -> GeniusResponse:
             "Authorization": f"Bearer {GENIUS_BEARER_TOKEN}"
         }
     )
-    result = GeniusResponse.model_validate(r.json())
+    result = GeniusResponseJson.model_validate(r.json())
     return result
 
-# print([
-#     song.result for song in
-#     search_by_text("5 минут назад").response.hits
-#     ])
+print([
+    song.result for song in
+    search_by_text("5 минут назад").response.hits
+    ])
